@@ -2397,12 +2397,25 @@ async function getWindowClient(url) {
     }
     return null;
 }
-
+/**
+ * @return Returns true if runtime is chrome extension manifest v3.
+ */
+ function isExtensionManifestV3() {
+    if (typeof chrome.runtime.getManifest === 'undefined') {
+        return false;
+    }
+    const manifest = chrome.runtime.getManifest();
+    return manifest.manifest_version === 3;
+}
 /**
  * @returns If there is currently a visible WindowClient, this method will resolve to true,
  * otherwise false.
  */
 function hasVisibleClients(clientList) {
+    if (isExtensionManifestV3()) {
+        // In Chrome extension manifest v3, there are no background pages
+        return clientList.some(client => client.visibilityState === 'visible');
+    }
     return clientList.some(client => client.visibilityState === 'visible' &&
         // Ignore chrome-extension clients as that matches the background pages of extensions, which
         // are always considered visible for some reason.
