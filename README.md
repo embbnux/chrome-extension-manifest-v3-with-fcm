@@ -31,6 +31,6 @@ Then in `SDK setup and configuration`, copy `firebaseConfig` and saved into `fir
 
 6. In Chrome: `chrome://extensions/`, enable developer mode, then client `Local unpacked` to load this project into chrome extension.
 
-7. Click extension icon in Chrome Extensions to open this app and Client register button to FCM for this app. You can get a registration token at developer tool of popup window.
+7. Click extension icon in Chrome Extensions to open this app and click register button to FCM for this app. You can get a registration token at developer tool of popup window.
 
 8. Follow [here](https://firebase.google.com/docs/cloud-messaging/js/first-message#send_a_test_notification_message) to send a test message to client
